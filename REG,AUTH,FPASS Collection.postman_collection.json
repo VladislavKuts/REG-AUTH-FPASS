@@ -1,0 +1,796 @@
+{
+	"info": {
+		"_postman_id": "bc855add-a0f1-408b-a3f5-3b98313332bc",
+		"name": "REG,AUTH,FPASS Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "register",
+			"item": [
+				{
+					"name": "REG_01",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "f96eae53-9764-4e78-a4c6-d0b1ab7fda68",
+								"exec": [
+									"function getRandomEmail(domain, length){\r",
+									"    var text = \"\";\r",
+									"    var possible = \"abcdefghijklmnopqrstuvwxyz1234567890\";\r",
+									"    \r",
+									"    for(var i = 0; i < length; i++){\r",
+									"        text += possible.charAt(Math.floor(Math.random() * possible.length));\r",
+									"    }\r",
+									"    return text + domain;\r",
+									"}\r",
+									"\r",
+									"var email = getRandomEmail(\"@test.com\", 7);\r",
+									"postman.setGlobalVariable(\"auto_email\", email);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "952841f2-c10c-4eef-aeab-b19c6a607384",
+								"exec": [
+									"pm.test(\"response is ok\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{lang: \"en\", email: \"{{auto_email}}\", password: \"qwe123\", confirm: \"qwe123\",  LinkID: \"\"}"
+						},
+						"url": {
+							"raw": "https://test-api.umarkets.com/registration/account?currentUrl=https%3A%2F%2Ftest-my.umarkets.com%2F%23register",
+							"protocol": "https",
+							"host": [
+								"test-api",
+								"umarkets",
+								"com"
+							],
+							"path": [
+								"registration",
+								"account"
+							],
+							"query": [
+								{
+									"key": "currentUrl",
+									"value": "https%3A%2F%2Ftest-my.umarkets.com%2F%23register"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "REG_02",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "76330617-b2e2-4749-aa1c-e24a04d2efa7",
+								"exec": [
+									"function getRandomEmail(domain, length){\r",
+									"    var text = \"\";\r",
+									"    var possible = \"abcdefghijklmnopqrstuvwxyz1234567890\";\r",
+									"    \r",
+									"    for(var i = 0; i < length; i++){\r",
+									"        text += possible.charAt(Math.floor(Math.random() * possible.length));\r",
+									"    }\r",
+									"    return text + domain;\r",
+									"}\r",
+									"\r",
+									"var email = getRandomEmail(\"@test.com\", 7);\r",
+									"postman.setGlobalVariable(\"auto_email\", email);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "b5830e9d-b3ac-4cd9-a96b-4e685971321b",
+								"exec": [
+									"pm.test(\"response is ok\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{lang: \"en\", email: \"{{auto_email}}\", password: \"qwe123\", confirm: \"321ewq\",  LinkID: \"\"}"
+						},
+						"url": {
+							"raw": "https://test-api.umarkets.com/registration/account?currentUrl=https%3A%2F%2Ftest-my.umarkets.com%2F%23register",
+							"protocol": "https",
+							"host": [
+								"test-api",
+								"umarkets",
+								"com"
+							],
+							"path": [
+								"registration",
+								"account"
+							],
+							"query": [
+								{
+									"key": "currentUrl",
+									"value": "https%3A%2F%2Ftest-my.umarkets.com%2F%23register"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "REG_03",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7525b605-79d4-4645-b3a6-e6e4f6811ea5",
+								"exec": [
+									"pm.test(\"response is bad\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{lang: \"en\", email: \"\", password: \"\", confirm: \"\",  LinkID: \"\"}"
+						},
+						"url": {
+							"raw": "https://test-api.umarkets.com/registration/account?currentUrl=https%3A%2F%2Ftest-my.umarkets.com%2F%23register",
+							"protocol": "https",
+							"host": [
+								"test-api",
+								"umarkets",
+								"com"
+							],
+							"path": [
+								"registration",
+								"account"
+							],
+							"query": [
+								{
+									"key": "currentUrl",
+									"value": "https%3A%2F%2Ftest-my.umarkets.com%2F%23register"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "REG_04",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "87b2a438-4838-4c34-a3e8-0f64ed1bfb63",
+								"exec": [
+									"pm.test(\"User with this email is already registered.\", function () {",
+									"    pm.response.to.have.status(500);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{lang: \"en\", email: \"test@g.c\", password: \"qwe1234567\", confirm: \"qwe1234567\",  LinkID: \"\"}"
+						},
+						"url": {
+							"raw": "https://test-api.umarkets.com/registration/account?currentUrl=https%3A%2F%2Ftest-my.umarkets.com%2F%23register",
+							"protocol": "https",
+							"host": [
+								"test-api",
+								"umarkets",
+								"com"
+							],
+							"path": [
+								"registration",
+								"account"
+							],
+							"query": [
+								{
+									"key": "currentUrl",
+									"value": "https%3A%2F%2Ftest-my.umarkets.com%2F%23register"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "REG_05",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a8b99e0c-037e-4ac5-af7a-7b2ce4486ecb",
+								"exec": [
+									"pm.test(\"The Email field is not a valid e-mail address. The Email field is required.\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{lang: \"en\", email: \"\", password: \"qwe123\", confirm: \"qwe123\",  LinkID: \"\"}"
+						},
+						"url": {
+							"raw": "https://test-api.umarkets.com/registration/account?currentUrl=https%3A%2F%2Ftest-my.umarkets.com%2F%23register",
+							"protocol": "https",
+							"host": [
+								"test-api",
+								"umarkets",
+								"com"
+							],
+							"path": [
+								"registration",
+								"account"
+							],
+							"query": [
+								{
+									"key": "currentUrl",
+									"value": "https%3A%2F%2Ftest-my.umarkets.com%2F%23register"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "login",
+			"item": [
+				{
+					"name": "AUTH_01",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "080475c3-10a8-4b5f-b8a5-af9e35e0744e",
+								"exec": [
+									"pm.test(\"(200) Response is ok.\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{lang: null, email: \"V@gmail.com\", password: \"qwe123\"}"
+						},
+						"url": {
+							"raw": "https://test-api.umarkets.com/account/logon?currentUrl=https%3A%2F%2Ftest-my.umarkets.com%2F%23login",
+							"protocol": "https",
+							"host": [
+								"test-api",
+								"umarkets",
+								"com"
+							],
+							"path": [
+								"account",
+								"logon"
+							],
+							"query": [
+								{
+									"key": "currentUrl",
+									"value": "https%3A%2F%2Ftest-my.umarkets.com%2F%23login"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AUTH_02",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6f85168f-c5cd-4b59-b42d-ce453c57ddc0",
+								"exec": [
+									"pm.test(\"(401) Incorrect username or password.\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{lang: null, email: \"Vvq@gmail.com\", password: \"qwe123\"}"
+						},
+						"url": {
+							"raw": "https://test-api.umarkets.com/account/logon?currentUrl=https%3A%2F%2Ftest-my.umarkets.com%2F%23login",
+							"protocol": "https",
+							"host": [
+								"test-api",
+								"umarkets",
+								"com"
+							],
+							"path": [
+								"account",
+								"logon"
+							],
+							"query": [
+								{
+									"key": "currentUrl",
+									"value": "https%3A%2F%2Ftest-my.umarkets.com%2F%23login"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AUTH_03",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a63a86c4-1a11-4727-96f7-c2bc98320947",
+								"exec": [
+									"pm.test(\"(401) Incorrect username or password.\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{lang: null, email: \"V@gmail.com\", password: \"QWE123\"}"
+						},
+						"url": {
+							"raw": "https://test-api.umarkets.com/account/logon?currentUrl=https%3A%2F%2Ftest-my.umarkets.com%2F%23login",
+							"protocol": "https",
+							"host": [
+								"test-api",
+								"umarkets",
+								"com"
+							],
+							"path": [
+								"account",
+								"logon"
+							],
+							"query": [
+								{
+									"key": "currentUrl",
+									"value": "https%3A%2F%2Ftest-my.umarkets.com%2F%23login"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AUTH_04",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a4986b5e-e24c-456f-b207-1565dd37d60f",
+								"exec": [
+									"pm.test(\"(401) Incorrect username or password.\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{lang: null, email: \"V@gmail.com\", password: \"\"}"
+						},
+						"url": {
+							"raw": "https://test-api.umarkets.com/account/logon?currentUrl=https%3A%2F%2Ftest-my.umarkets.com%2F%23login",
+							"protocol": "https",
+							"host": [
+								"test-api",
+								"umarkets",
+								"com"
+							],
+							"path": [
+								"account",
+								"logon"
+							],
+							"query": [
+								{
+									"key": "currentUrl",
+									"value": "https%3A%2F%2Ftest-my.umarkets.com%2F%23login"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AUTH_05",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "af3bff49-9000-4c8e-b3c8-25765b73d33e",
+								"exec": [
+									"pm.test(\"(401) Incorrect username or password.\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{lang: null, email: \"\", password: \"qwe123\"}"
+						},
+						"url": {
+							"raw": "https://test-api.umarkets.com/account/logon?currentUrl=https%3A%2F%2Ftest-my.umarkets.com%2F%23login",
+							"protocol": "https",
+							"host": [
+								"test-api",
+								"umarkets",
+								"com"
+							],
+							"path": [
+								"account",
+								"logon"
+							],
+							"query": [
+								{
+									"key": "currentUrl",
+									"value": "https%3A%2F%2Ftest-my.umarkets.com%2F%23login"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "forgotPass",
+			"item": [
+				{
+					"name": "FPASS_01",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "67cded9e-cd26-481c-bc50-e211fddf6f93",
+								"exec": [
+									"pm.test(\"(200) Response is ok.\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{lang: null, email: \"V@gmail.com\", baseLink: \"https://test-my.umarkets.com/#resetPassword/\"}"
+						},
+						"url": {
+							"raw": "https://test-api.umarkets.com/account/forgot-password?currentUrl=https%3A%2F%2Ftest-my.umarkets.com%2F%23forgotPassword",
+							"protocol": "https",
+							"host": [
+								"test-api",
+								"umarkets",
+								"com"
+							],
+							"path": [
+								"account",
+								"forgot-password"
+							],
+							"query": [
+								{
+									"key": "currentUrl",
+									"value": "https%3A%2F%2Ftest-my.umarkets.com%2F%23forgotPassword"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FPASS_02",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1b2275d7-cb37-459b-b599-2e45b07fdf53",
+								"exec": [
+									"pm.test(\"(500) No such email.\", function () {\r",
+									"    pm.response.to.have.status(500);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{lang: null, email: \"Vrrrrrrrr@gmail.com\", baseLink: \"https://test-my.umarkets.com/#resetPassword/\"}"
+						},
+						"url": {
+							"raw": "https://test-api.umarkets.com/account/forgot-password?currentUrl=https%3A%2F%2Ftest-my.umarkets.com%2F%23forgotPassword",
+							"protocol": "https",
+							"host": [
+								"test-api",
+								"umarkets",
+								"com"
+							],
+							"path": [
+								"account",
+								"forgot-password"
+							],
+							"query": [
+								{
+									"key": "currentUrl",
+									"value": "https%3A%2F%2Ftest-my.umarkets.com%2F%23forgotPassword"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FPASS_03",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5fe420f9-f3eb-4f2c-86ac-9fc7d001919b",
+								"exec": [
+									"pm.test(\"(500) No such email.\", function () {\r",
+									"    pm.response.to.have.status(500);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{lang: null, email: \"\", baseLink: \"https://test-my.umarkets.com/#resetPassword/\"}"
+						},
+						"url": {
+							"raw": "https://test-api.umarkets.com/account/forgot-password?currentUrl=https%3A%2F%2Ftest-my.umarkets.com%2F%23forgotPassword",
+							"protocol": "https",
+							"host": [
+								"test-api",
+								"umarkets",
+								"com"
+							],
+							"path": [
+								"account",
+								"forgot-password"
+							],
+							"query": [
+								{
+									"key": "currentUrl",
+									"value": "https%3A%2F%2Ftest-my.umarkets.com%2F%23forgotPassword"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FPASS_04",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "36d6a6eb-f722-498b-b767-0cd9dc9227ba",
+								"exec": [
+									"pm.test(\"(500) No such email.\", function () {\r",
+									"    pm.response.to.have.status(500);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{lang: null, email: \" \", baseLink: \"https://test-my.umarkets.com/#resetPassword/\"}"
+						},
+						"url": {
+							"raw": "https://test-api.umarkets.com/account/forgot-password?currentUrl=https%3A%2F%2Ftest-my.umarkets.com%2F%23forgotPassword",
+							"protocol": "https",
+							"host": [
+								"test-api",
+								"umarkets",
+								"com"
+							],
+							"path": [
+								"account",
+								"forgot-password"
+							],
+							"query": [
+								{
+									"key": "currentUrl",
+									"value": "https%3A%2F%2Ftest-my.umarkets.com%2F%23forgotPassword"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
